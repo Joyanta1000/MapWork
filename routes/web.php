@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\LocationTrackController;
+use Illuminate\Support\Facades\Artisan;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +15,15 @@ use App\Http\Controllers\LocationTrackController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('seed', function () {
+    Artisan::call('db:seed');
+    dd('Done');
+});
+
+Route::get('migrate_fresh_seed', function () {
+    Artisan::call('migrate:fresh --seed');
+    dd('Done');
+});
 
 Route::get('/', function () {
     return view('welcome');

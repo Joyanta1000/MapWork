@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Location;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class LocationTrackController extends Controller
@@ -14,6 +15,7 @@ class LocationTrackController extends Controller
      */
     public function index()
     {
+        $UserLocation = User::all();
         return view('Location.index');
     }
 
@@ -44,9 +46,9 @@ class LocationTrackController extends Controller
      * @param  \App\Models\Location  $location
      * @return \Illuminate\Http\Response
      */
-    public function show(Location $location)
+    public function show(User $user)
     {
-        //
+        return response()->json($user->all());
     }
 
     /**
