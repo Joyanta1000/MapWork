@@ -13,8 +13,8 @@ class LocationFactory extends Factory
      */
     public function definition()
     {
-        $lang = 33.7490;
-        $long = -84.3880;
+        $lang = 22.33716406641762;
+        $long = 91.78867267289668;
         return [
 
             "lat" => $this->faker->latitude(
