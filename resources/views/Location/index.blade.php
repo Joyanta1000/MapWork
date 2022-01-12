@@ -44,6 +44,17 @@
     
     let map;
 
+    function haversine_distance(mk1, mk2) {
+      var R = 3958.8; // Radius of the Earth in miles
+      var rlat1 = mk1.position.lat() * (Math.PI/180); // Convert degrees to radians
+      var rlat2 = mk2.position.lat() * (Math.PI/180); // Convert degrees to radians
+      var difflat = rlat2-rlat1; // Radian difference (latitudes)
+      var difflon = (mk2.position.lng()-mk1.position.lng()) * (Math.PI/180); // Radian difference (longitudes)
+
+      var d = 2 * R * Math.asin(Math.sqrt(Math.sin(difflat/2)*Math.sin(difflat/2)+Math.cos(rlat1)*Math.cos(rlat2)*Math.sin(difflon/2)*Math.sin(difflon/2)));
+      return d;
+    }
+
     function initMap() {
       console.log('initMap');
       $.get('Location/show', function (data) {
@@ -57,8 +68,7 @@
     });
       // let position = {0:{lat:"22.337345690022172", lng:"91.78881901010477"}, 1:{lat:"22.337757534825446", lng:"91.78882302311422"}};
       $.get('Location/show', function (data) {
-        console.log(data.UserLocation);
-        position = data.UserLocation;
+        position = data.OtherLocation;
         for (let i = 0; i < position.length; i++) {
           console.log(parseFloat(position[i].lat), parseFloat(position[i].lng));
         new google.maps.Marker({

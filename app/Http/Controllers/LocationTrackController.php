@@ -46,12 +46,12 @@ class LocationTrackController extends Controller
      * @param  \App\Models\Location  $location
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(Location $location)
     {
-        $UserLocation = $user->all();
-        $OwnLocation = $user->find(1);
+        $OtherLocation = $location->all();
+        $OwnLocation = User::find(1);
         return response()->json([
-            'UserLocation' => $UserLocation,
+            'OtherLocation' => $OtherLocation,
             'OwnLocation' => $OwnLocation,
         ]);
     }

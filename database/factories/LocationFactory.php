@@ -13,8 +13,19 @@ class LocationFactory extends Factory
      */
     public function definition()
     {
+        $lang = 33.7490;
+        $long = -84.3880;
         return [
-            //
+
+            "lat" => $this->faker->latitude(
+                $min = ($lang * 10000 - rand(0, 50)) / 10000,
+                $max = ($lang * 10000 + rand(0, 50)) / 10000
+            ),
+            "lng" => $this->faker->longitude(
+                $min = ($long * 10000 - rand(0, 50)) / 10000,
+                $max = ($long * 10000 + rand(0, 50)) / 10000
+            ),
+
         ];
     }
 }
