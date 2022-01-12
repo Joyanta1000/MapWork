@@ -55,7 +55,7 @@
       
       });
     });
-      let position = {0:{lat:"22.337345690022172", lng:"91.78881901010477"}, 1:{lat:"22.337757534825446", lng:"91.78882302311422"}};
+      // let position = {0:{lat:"22.337345690022172", lng:"91.78881901010477"}, 1:{lat:"22.337757534825446", lng:"91.78882302311422"}};
       $.get('Location/show', function (data) {
         console.log(data.UserLocation);
         position = data.UserLocation;
