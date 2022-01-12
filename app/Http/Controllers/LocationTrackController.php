@@ -48,7 +48,12 @@ class LocationTrackController extends Controller
      */
     public function show(User $user)
     {
-        return response()->json($user->all());
+        $UserLocation = $user->all();
+        $OwnLocation = $user->find(1);
+        return response()->json([
+            'UserLocation' => $UserLocation,
+            'OwnLocation' => $OwnLocation,
+        ]);
     }
 
     /**

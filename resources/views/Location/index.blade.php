@@ -33,27 +33,34 @@
 
   <script>
 
-$(document).ready(function () {
+// $(document).ready(function () {
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-      $.get('Location/show', function (data) {
-        console.log(data);
-      })
-  });
+      
+  // });
     
     let map;
 
     function initMap() {
       console.log('initMap');
+      $.get('Location/show', function (data) {
+
       map = new google.maps.Map(document.getElementById("googleMap"), {
-        center: {lat:22.337345690022172, lng:91.78881901010477},
+        
+        center: {lat:parseFloat(data.OwnLocation.lat), lng:parseFloat(data.OwnLocation.lng)},
         zoom: 8,
+      
       });
+    });
       let position = {0:{lat:"22.337345690022172", lng:"91.78881901010477"}, 1:{lat:"22.337757534825446", lng:"91.78882302311422"}};
-        for (let i = 0; i < 2; i++) {
+      $.get('Location/show', function (data) {
+        console.log(data.UserLocation);
+        position = data.UserLocation;
+        for (let i = 0; i < position.length; i++) {
+          console.log(parseFloat(position[i].lat), parseFloat(position[i].lng));
         new google.maps.Marker({
           position: {
             lat: parseFloat(position[i].lat),
@@ -62,6 +69,8 @@ $(document).ready(function () {
           map,
         });
       }
+      })
+        
     }
   </script>
 
