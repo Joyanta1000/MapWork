@@ -26,7 +26,7 @@ Route::get('migrate_fresh_seed', function () {
 });
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('test');
 });
 
 Route::prefix('Location')->group(

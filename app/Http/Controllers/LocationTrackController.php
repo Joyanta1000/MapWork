@@ -16,7 +16,9 @@ class LocationTrackController extends Controller
     public function index()
     {
         $UserLocation = User::all();
-        return view('Location.index');
+        $myLocation = User::find(1);
+        $locations = Location::all();
+        return view('Location.index', compact('UserLocation', 'locations', 'myLocation'));
     }
 
     /**
@@ -37,7 +39,7 @@ class LocationTrackController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -48,7 +50,7 @@ class LocationTrackController extends Controller
      */
     public function show(Location $location)
     {
-        $OtherLocation = $location->all();
+        $OtherLocation = $location->find(request()->location_id);
         $OwnLocation = User::find(1);
         return response()->json([
             'OtherLocation' => $OtherLocation,
@@ -74,9 +76,16 @@ class LocationTrackController extends Controller
      * @param  \App\Models\Location  $location
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Location $location)
+    public function update(Request $request, $id)
     {
-        //
+        $res = User::find($id)->update([
+            'lat' => $request->lat,
+            'lng' => $request->lng,
+        ]);
+
+        return response()->json([
+            'message' => $res,
+        ]);
     }
 
     /**
