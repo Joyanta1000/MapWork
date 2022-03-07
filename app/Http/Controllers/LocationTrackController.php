@@ -50,7 +50,8 @@ class LocationTrackController extends Controller
      */
     public function show(Location $location)
     {
-        $OtherLocation = $location->find(request()->location_id);
+        // $OtherLocation = $location->find(request()->location_id);
+        $OtherLocation = $location->all();
         $OwnLocation = User::find(1);
         return response()->json([
             'OtherLocation' => $OtherLocation,
