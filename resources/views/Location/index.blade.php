@@ -285,6 +285,7 @@
           },
           map: map,
           title: data3.location,
+          icon: 'https://img.icons8.com/ios-filled/50/000000/marker-h.png'
         });
         (function (mk2, data3) {
                 google.maps.event.addListener(mk2, "click", function (e) {
@@ -338,9 +339,9 @@
 
   }
 
-  setInterval(function() {
+  // setInterval(function() {
     getLocation();
-  }, 1000);
+  // }, 1000);
 
 
   function getLocation() {
