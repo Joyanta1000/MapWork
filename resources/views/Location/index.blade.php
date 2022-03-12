@@ -65,9 +65,20 @@
 
     selected = this.selected;
 
-    getLocation();
+    myLocation();
 
   });
+
+
+  setInterval(() => {
+
+    this.selected = $('#selectDis').val() ? $('#selectDis').val() : 10;
+
+    selected = this.selected;
+
+    getLocation();
+    
+  }, 10000);
 
   function haversine_distance(mk1, mk2) {
     var R = 6371; // Radius of the Earth in km , if mile then 3959
@@ -106,10 +117,9 @@
 
   function myLocation() {
 
-
-    deleteOverlays();
-
     $.get('Location/show', function(data) {
+
+      deleteOverlays();
 
       console.log(data, 'dataMyMy');
 
